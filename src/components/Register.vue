@@ -59,7 +59,7 @@
                    password:this.password
                }).then(res=>{
                    console.log(res)
-
+                   this.$router.push('/')
                }).catch(err=>console.log(err))
               }
               else {

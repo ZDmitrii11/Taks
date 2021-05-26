@@ -1,52 +1,43 @@
 <template>
-
-
-
-
-        <div class="container">
-            <form action="/action_page.php">
-                <div class="my-row">
-
-                    <div class="vl">
-                        <span class="vl-innertext">OR</span>
-                    </div>
-                    <div class="col">
-                        <div class="hide-md-lg">
-                            <p>Or sign in manually:</p>
-                        </div>
-                         <h1  align="center">Login</h1>
-                        <label class="label">Email</label>
-                        <input  class="my-input" type="text" v-model="username" name="username" placeholder="Email or Username" required>
-                        <label class="label">Password</label>
-                        <input  class="my-input" type="password" v-model="password" name="password" placeholder="Password" required>
-                         <button id="login" @click.prevent="login">Login</button>
-                        <a class="singUp" @click="Register" href="#">Want To Sing Up ?</a>
-                    </div>
-
-
-                    <div id="my-col" class="col">
-                        <a href="#" class="fb my-btn">
-                            <i class="fa fa-facebook fa-fw"></i> Login with Facebook
-                        </a>
-                        <a href="#" class="twitter my-btn">
-                            <i class="fa fa-twitter fa-fw"></i> Login with Twitter
-                        </a>
-                        <a href="#" class="google my-btn"><i class="fa fa-google fa-fw">
-                        </i> Login with Google+
-                        </a>
-                    </div>
-
-
-
-
-
+    <div class="container">
+        <form action="/action_page.php">
+            <div class="my-row">
+                <div class="vl">
+                    <span class="vl-innertext">OR</span>
                 </div>
-            </form>
+                <div class="col">
+                    <div class="hide-md-lg">
+                        <p>Or sign in manually:</p>
+                    </div>
+                    <h1 align="center">Login</h1>
+                    <label class="label">Email</label>
+                    <input class="my-input" type="text" v-model="username" name="username"
+                           placeholder="Email or Username" required>
+                    <label class="label">Password</label>
+                    <input class="my-input" type="password" v-model="password" name="password" placeholder="Password"
+                           required>
+                    <button id="login" @click.prevent="login">Login</button>
+                    <a class="singUp" @click="Register" href="#">Want To Sing Up ?</a>
+                </div>
 
-        </div>
+
+                <div id="my-col" class="col">
+                    <a href="#" class="fb my-btn">
+                        <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+                    </a>
+                    <a href="#" class="twitter my-btn">
+                        <i class="fa fa-twitter fa-fw"></i> Login with Twitter
+                    </a>
+                    <a href="#" class="google my-btn"><i class="fa fa-google fa-fw">
+                    </i> Login with Google+
+                    </a>
+                </div>
 
 
+            </div>
+        </form>
 
+    </div>
 
 
 </template>
@@ -58,8 +49,8 @@
         name: "LoginPage",
         data() {
             return {
-                username:'',
-                password:'',
+                username: '',
+                password: '',
             }
         },
         methods: {
@@ -70,21 +61,20 @@
                 }
             },
 
-          login(){
-              console.log(this.username)
-              console.log(this.password)
-          axios.post('http://localhost:5000/api/v1/login',{
-              username:this.username,
-              password:this.password
-          }).then(
-             res=>{console.log(res)
-                 localStorage.setItem('token',res.data.token)
-                 this.$router.push('/UserPage')
-             }
-          )
-              .catch(err=>console.log(err))
+            login() {
+                axios.post('http://localhost:5000/api/v1/login', {
+                    username: this.username,
+                    password: this.password
+                }).then(
+                    res => {
 
-          }
+                        localStorage.setItem('token', res.data.token)
+                        this.$router.push('/user-page')
+                    }
+                )
+                    .catch(err => console.log(err))
+
+            }
 
         }
     }
@@ -108,31 +98,36 @@
         background-color: white;
         padding: 20px 0 30px 0;
         width: 1500px;
-       height: auto;
+        height: auto;
         margin-top: 12%;
 
 
-
     }
+
     .my-container {
 
     }
-    .label{
+
+    .label {
         font-size: 25px;
 
     }
-    #my-col{
+
+    #my-col {
         margin-top: 6%;
         padding: 2rem;
     }
-    .singUp{
+
+    .singUp {
         font-size: 20px;
     }
-    .my-input{
+
+    .my-input {
         font-size: 22px;
         padding: 1rem;
         margin-top: 15px;
     }
+
     /* style inputs and link buttons */
     input,
     .my-btn {
@@ -186,6 +181,7 @@
     input[type=submit]:hover {
         background-color: #45a049;
     }
+
     #login {
         background-color: #04AA6D;
         color: white;
@@ -214,7 +210,8 @@
         text-align: center;
 
     }
-    .my-row{
+
+    .my-row {
         margin-top: 5%;
     }
 
@@ -261,7 +258,7 @@
     }
 
     /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
-    @media screen and (max-width:450px) {
+    @media screen and (max-width: 450px) {
         .col {
             width: 100%;
             margin-top: 0;
